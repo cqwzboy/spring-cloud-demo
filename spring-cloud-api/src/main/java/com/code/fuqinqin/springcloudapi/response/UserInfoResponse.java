@@ -1,4 +1,4 @@
-package com.code.fuqinqin.springcloudapi.request;
+package com.code.fuqinqin.springcloudapi.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,9 @@ import java.io.Serializable;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class UserInfoRequest implements Serializable {
+@AllArgsConstructor
+public class UserInfoResponse implements Serializable {
     private Long userId;
     private String userName;
     private Integer age;

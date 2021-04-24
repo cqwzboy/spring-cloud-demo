@@ -1,5 +1,7 @@
 package com.code.fuqinqin.springcloudapi.springcloudconsumer.controller;
 
+import com.code.fuqinqin.springcloudapi.request.UserInfoRequest;
+import com.code.fuqinqin.springcloudapi.response.UserInfoResponse;
 import com.code.fuqinqin.springcloudapi.springcloudconsumer.SpringCloudConsumerApplicationTests;
 import com.code.fuqinqin.springcloudapi.springcloudconsumer.feign.IHelloClient;
 import org.mockito.Mockito;
@@ -30,12 +32,31 @@ public class ConsumerControllerTest extends SpringCloudConsumerApplicationTests 
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         Mockito.when(helloClient.sayHello())
                 .thenAnswer((Answer<String>) invocationOnMock -> "Hello TestNG...");
+        Mockito.when(helloClient.getUserInfo(Mockito.any(UserInfoRequest.class)))
+                .thenAnswer((Answer<UserInfoResponse>) invocationOnMock -> {
+                    UserInfoRequest request = invocationOnMock.getArgument(0);
+                    return UserInfoResponse.builder()
+                            .userId(request.getUserId())
+                            .userName(request.getUserName())
+                            .age(request.getAge())
+                            .build();
+                });
     }
-
 
     @Test
     public void consumerTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/consumer/hello"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print());
+    }
+
+    @Test
+    public void userInfoTest() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/consumer/user-info")
+                        .param("userId", "1001")
+                        .param("userName", "zhangsan")
+                        .param("age", "23")
+                )
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
     }

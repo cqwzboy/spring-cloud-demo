@@ -13,6 +13,10 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-cloud-consumer</name>
 
+    <properties>
+        <spring-cloud-api.version>0.0.1-SNAPSHOT</spring-cloud-api.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -32,6 +36,12 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.code.fuqinqin</groupId>
+            <artifactId>spring-cloud-api</artifactId>
+            <version>${spring-cloud-api.version}</version>
         </dependency>
     </dependencies>
 
