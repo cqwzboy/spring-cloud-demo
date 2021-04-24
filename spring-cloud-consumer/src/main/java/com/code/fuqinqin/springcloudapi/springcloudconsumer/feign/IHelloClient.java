@@ -14,4 +14,7 @@ public interface IHelloClient {
 
     @GetMapping("/user-info")
     UserInfoResponse getUserInfo(UserInfoRequest request);
+
+    @GetMapping("/user-info2")
+    UserInfoResponse getUserInfo2(UserInfoRequest request);
 }

@@ -5,6 +5,7 @@ import com.code.fuqinqin.springcloudapi.response.UserInfoResponse;
 import com.code.fuqinqin.springcloudapi.springcloudconsumer.SpringCloudConsumerApplicationTests;
 import com.code.fuqinqin.springcloudapi.springcloudconsumer.feign.IHelloClient;
 import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -33,14 +34,23 @@ public class ConsumerControllerTest extends SpringCloudConsumerApplicationTests 
         Mockito.when(helloClient.sayHello())
                 .thenAnswer((Answer<String>) invocationOnMock -> "Hello TestNG...");
         Mockito.when(helloClient.getUserInfo(Mockito.any(UserInfoRequest.class)))
-                .thenAnswer((Answer<UserInfoResponse>) invocationOnMock -> {
-                    UserInfoRequest request = invocationOnMock.getArgument(0);
-                    return UserInfoResponse.builder()
-                            .userId(request.getUserId())
-                            .userName(request.getUserName())
-                            .age(request.getAge())
-                            .build();
-                });
+                .thenAnswer((Answer<UserInfoResponse>) this::getUserInfoResponse);
+        Mockito.when(helloClient.getUserInfo2(Mockito.any(UserInfoRequest.class)))
+                .thenAnswer((Answer<UserInfoResponse>) this::getUserInfoResponse);
+    }
+
+    private UserInfoResponse getUserInfoResponse(InvocationOnMock invocationOnMock) {
+        UserInfoRequest request = invocationOnMock.getArgument(0);
+        UserInfoResponse userInfoResponse = new UserInfoResponse();
+        userInfoResponse.setUserId(request.getUserId());
+        userInfoResponse.setUserName(request.getUserName());
+        userInfoResponse.setAge(request.getAge());
+        return userInfoResponse;
+//                    return UserInfoResponse.builder()
+//                            .userId(request.getUserId())
+//                            .userName(request.getUserName())
+//                            .age(request.getAge())
+//                            .build();
     }
 
     @Test
@@ -57,6 +67,17 @@ public class ConsumerControllerTest extends SpringCloudConsumerApplicationTests 
                         .param("userName", "zhangsan")
                         .param("age", "23")
                 )
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print());
+    }
+
+    @Test
+    public void userInfoTest2() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/consumer/user-info2")
+                .param("userId", "1002")
+                .param("userName", "lisi")
+                .param("age", "24")
+        )
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
     }
