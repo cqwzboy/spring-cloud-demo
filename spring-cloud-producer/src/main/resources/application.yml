@@ -1,0 +1,11 @@
+server:
+  port: 1114
+
+spring:
+  application:
+    name: HELLO-SERVICE-PROVIDER
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://peer1:1111/eureka/,http://peer2:1112/eureka/
