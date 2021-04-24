@@ -1,4 +1,4 @@
-package com.code.fuqinqin.springcloudconsumer.feign;
+package com.code.fuqinqin.springcloudapi.springcloudconsumer.feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;

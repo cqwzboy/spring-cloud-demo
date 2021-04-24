@@ -1,4 +1,4 @@
-package com.code.fuqinqin.springcloudserver;
+package com.code.fuqinqin.springcloudapi.springcloudserver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

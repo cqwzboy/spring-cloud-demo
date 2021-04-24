@@ -1,4 +1,4 @@
-package com.code.fuqinqin.springcloudconsumer;
+package com.code.fuqinqin.springcloudapi.springcloudconsumer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

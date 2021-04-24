@@ -1,6 +1,6 @@
-package com.code.fuqinqin.springcloudconsumer.controller;
+package com.code.fuqinqin.springcloudapi.springcloudconsumer.controller;
 
-import com.code.fuqinqin.springcloudconsumer.feign.IHelloClient;
+import com.code.fuqinqin.springcloudapi.springcloudconsumer.feign.IHelloClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

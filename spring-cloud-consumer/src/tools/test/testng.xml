@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="ft-openapi">
+    <test name="test">
+        <classes>
+            <class name="com.code.fuqinqin.springcloudapi.springcloudconsumer.controller.ConsumerControllerTest"/>
+        </classes>
+    </test>
+</suite>

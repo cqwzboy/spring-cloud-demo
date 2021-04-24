@@ -1,4 +1,4 @@
-package com.code.fuqinqin.springcloudproducer.controller;
+package com.code.fuqinqin.springcloudapi.springcloudproducer.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;

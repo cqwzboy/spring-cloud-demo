@@ -1,10 +1,10 @@
-package com.code.fuqinqin.springcloudconsumer;
+package com.code.fuqinqin.springcloudapi.springcloudproducer;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringCloudConsumerApplicationTests {
+class SpringCloudProducerApplicationTests {
 
     @Test
     void contextLoads() {
