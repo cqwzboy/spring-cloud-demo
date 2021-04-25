@@ -4,8 +4,12 @@ server:
 spring:
   application:
     name: HELLO-SERVICE-PROVIDER
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://peer1:1111/eureka/,http://peer2:1112/eureka/
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://peer1:1111/eureka/,http://peer2:1112/eureka/
